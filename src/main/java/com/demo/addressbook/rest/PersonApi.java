@@ -21,12 +21,12 @@ public class PersonApi {
 
     // GET api/persons?query=1234
     @GetMapping
-    public List<Person> getPersons(@RequestParam String query) {
+    public List<Person> getPersons(@RequestParam(required = false) String query) {
         if (query == null || query.isEmpty()) {
             return personRepository.findAll();
         }
 
-        return personRepository.findByFirstName(query);
+        return personRepository.findByFirstNameIgnoreCaseContaining("%" + query + "%");
     }
 
 }
