@@ -3,6 +3,8 @@ package com.demo.addressbook.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Person {
@@ -11,8 +13,10 @@ public class Person {
     @GeneratedValue
     private long id;
 
+    @NotNull
     private String firstName;
     private String lastName;
+
     private String nickName;
 
     private String phoneNumber;

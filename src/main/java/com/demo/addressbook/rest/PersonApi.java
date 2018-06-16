@@ -5,6 +5,7 @@ import com.demo.addressbook.reepository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -15,7 +16,7 @@ public class PersonApi {
     private PersonRepository personRepository;
 
     @PostMapping
-    public Person create(@RequestBody Person person) {
+    public Person create(@Valid @RequestBody Person person) {
         return personRepository.save(person);
     }
 
@@ -28,5 +29,4 @@ public class PersonApi {
 
         return personRepository.findByFirstNameIgnoreCaseContaining("%" + query + "%");
     }
-
 }
