@@ -15,6 +15,7 @@ public class PersonApi {
     @Autowired
     private PersonRepository personRepository;
 
+    //POST /api/persons
     @PostMapping
     public Person create(@Valid @RequestBody Person person) {
         return personRepository.save(person);
@@ -28,5 +29,12 @@ public class PersonApi {
         }
 
         return personRepository.findByFirstNameIgnoreCaseContaining("%" + query + "%");
+    }
+
+    // DELETE /api/persons/1
+    @DeleteMapping("/{id}")
+    public void deletePerson(@PathVariable long id) {
+        final Person person = personRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        personRepository.delete(person);
     }
 }
